@@ -1,0 +1,15 @@
+{
+    "name": "ssl-certificate-expiry-checker",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Check the live TLS certificate on any host for issuer, validity dates, and days until expiry.",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "apify": "^3.2.6"
+    },
+    "scripts": {
+        "start": "node src/main.js"
+    }
+}

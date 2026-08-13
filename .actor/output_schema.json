@@ -1,0 +1,11 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of SSL Certificate Expiry Checker",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Certificate records",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

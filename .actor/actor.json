@@ -1,0 +1,13 @@
+{
+    "actorSpecification": 1,
+    "name": "ssl-certificate-expiry-checker",
+    "title": "SSL Certificate Expiry Checker — Live TLS Cert Status",
+    "description": "Check the live TLS certificate on any host: issuer, subject, valid dates, days until expiry, and whether it's expired or self-signed. For ops and IT teams catching cert expirations before they cause an outage, across as many hosts as they need checked.",
+    "version": "0.1",
+    "meta": {
+        "templateId": "custom-no-proxy"
+    },
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile"
+}
