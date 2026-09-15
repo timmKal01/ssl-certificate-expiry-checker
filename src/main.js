@@ -4,7 +4,7 @@ import { checkCertificate, parseHostPort } from './tls.js';
 await Actor.init();
 
 const input = (await Actor.getInput()) ?? {};
-const { hosts = [] } = input;
+const { hosts = ['google.com'] } = input;
 
 if (hosts.length === 0) {
     throw new Error('No hosts provided.');

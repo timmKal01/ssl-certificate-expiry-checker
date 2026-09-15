@@ -10,6 +10,5 @@
             "description": "Hostnames to check, without protocol (e.g. \"example.com\" or \"example.com:8443\" for a non-standard port). One check is billed per host.",
             "prefill": ["google.com"]
         }
-    },
-    "required": ["hosts"]
+    }
 }
