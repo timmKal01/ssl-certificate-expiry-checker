@@ -40,6 +40,9 @@ One record per host:
   "isSelfSigned": false,
   "trustedByNode": true,
   "trustError": null,
+  "trustFailureReason": null,
+  "chainComplete": true,
+  "terminalIssuerTrusted": true,
   "subjectAltNames": ["DNS:*.google.com", "DNS:google.com"],
   "fingerprint256": "AB:CD:...",
   "error": null
@@ -49,6 +52,23 @@ One record per host:
 A host that can't be reached (wrong port, connection refused, DNS
 failure) returns `"reachable": false` with an `error` message instead —
 still billed once, since a completed check is the result either way.
+
+When `trustedByNode` is `false`, `trustFailureReason` says which of three
+different repairs is needed, instead of leaving you to parse
+`trustError`'s raw string yourself:
+
+| `trustFailureReason` | Meaning | Fix |
+|---|---|---|
+| `self-signed-leaf` | The host's own certificate is self-signed | Replace it with one from a real CA |
+| `chain-incomplete` | The server didn't send an intermediate certificate | Fix the server's TLS config |
+| `unknown-root` | The chain is complete but terminates at a root this Node install doesn't have bundled | Not a server problem — the client's trust store is stale or the CA is niche/private |
+| `other` | Chain terminates at a known, trusted root, but something else failed (e.g. expired somewhere in the chain) | See `trustError` for detail |
+
+`chainComplete` and `terminalIssuerTrusted` are the raw signals behind
+that classification, computed by walking the certificate chain the
+server actually sent (via `issuerCertificate` links) and checking the
+terminal certificate's fingerprint against Node's own bundled root CAs,
+rather than by parsing Node's `authorizationError` message text.
 
 ## How it works
 
