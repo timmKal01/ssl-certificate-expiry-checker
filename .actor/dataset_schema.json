@@ -1,0 +1,78 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "host",
+                    "port",
+                    "reachable",
+                    "subjectCN",
+                    "issuerCN",
+                    "issuerO",
+                    "validFrom",
+                    "validTo",
+                    "daysUntilExpiration",
+                    "isExpired",
+                    "isSelfSigned",
+                    "trustedByNode"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "host": {
+                        "label": "Host",
+                        "format": "text"
+                    },
+                    "port": {
+                        "label": "Port",
+                        "format": "number"
+                    },
+                    "reachable": {
+                        "label": "Reachable",
+                        "format": "boolean"
+                    },
+                    "subjectCN": {
+                        "label": "Subject CN",
+                        "format": "text"
+                    },
+                    "issuerCN": {
+                        "label": "Issuer CN",
+                        "format": "text"
+                    },
+                    "issuerO": {
+                        "label": "Issuer o",
+                        "format": "text"
+                    },
+                    "validFrom": {
+                        "label": "Valid from",
+                        "format": "date"
+                    },
+                    "validTo": {
+                        "label": "Valid to",
+                        "format": "date"
+                    },
+                    "daysUntilExpiration": {
+                        "label": "Days until expiration",
+                        "format": "number"
+                    },
+                    "isExpired": {
+                        "label": "Is expired",
+                        "format": "boolean"
+                    },
+                    "isSelfSigned": {
+                        "label": "Is self signed",
+                        "format": "boolean"
+                    },
+                    "trustedByNode": {
+                        "label": "Trusted by node",
+                        "format": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
