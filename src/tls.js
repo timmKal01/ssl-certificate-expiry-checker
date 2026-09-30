@@ -67,7 +67,7 @@ function walkChain(leafCert) {
 }
 
 /**
- * Distinguishes three genuinely different repairs that authorizationError.message alone
+ * Distinguishes three genuinely different repairs that the authorizationError code alone
  * collapses into one opaque string: the leaf is self-signed (renew it), the server's chain
  * is missing an intermediate (fix what the server sends), or the chain is complete but
  * terminates at a root this Node install doesn't have bundled (a stale client trust store,
@@ -116,7 +116,8 @@ export async function checkCertificate(entry) {
         isExpired: validTo ? validTo.getTime() < Date.now() : null,
         isSelfSigned: cert.issuer?.CN && cert.subject?.CN ? cert.issuer.CN === cert.subject.CN : null,
         trustedByNode: authorized === true,
-        trustError: authorized ? null : authorizationError?.message ?? null,
+        // Node reports authorizationError as a plain code string (e.g. "CERT_HAS_EXPIRED"), not an Error.
+        trustError: authorized ? null : (typeof authorizationError === 'string' ? authorizationError : authorizationError?.message) ?? null,
         trustFailureReason,
         chainComplete,
         terminalIssuerTrusted,
